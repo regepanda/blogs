@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from controller import ArticleController
+
+from blogs.controller.index import ArticleController
 
 urlpatterns = [
     # ex: /blogs/

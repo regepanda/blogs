@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from ..models import Article
+from django.http import HttpResponse, Http404
+from blogs.models import Article
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -24,7 +24,11 @@ def index(request):
 
 
 def detail(request, article_id=0):
-    return HttpResponse("article detail with article_id:" + article_id)
+    try:
+        article = Article.objects.get(pk=article_id)
+    except Article.DoesNotExist:
+        raise Http404('article does not exist')
+    return render(request, 'blogs/single.html', {'article': article})
 
 
 def update(request, article_id=0):

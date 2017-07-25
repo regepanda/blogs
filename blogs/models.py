@@ -7,3 +7,5 @@ class Article(models.Model):
     article_content = models.TextField()
     author_name = models.CharField(max_length=100)
     author_occupation = models.CharField(max_length=100)
+    release_time = models.CharField(max_length=50)
+    image = models.CharField(max_length=50)
